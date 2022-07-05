@@ -55,6 +55,8 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
 
+    'sortdspeform.herokuapp.com'
+
 ]
 
 MIDDLEWARE = [
