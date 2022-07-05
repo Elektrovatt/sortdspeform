@@ -55,11 +55,12 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
 
-    'sortdspeform',
+
 
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -178,7 +179,7 @@ django_heroku.settings(locals())
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # INTERNAL_IPS = [
 #
 #     '127.0.0.1',
