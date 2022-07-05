@@ -35,8 +35,8 @@ DEBUG = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['sortdspeform.herokuapp.com']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['sortdspeform.herokuapp.com']
 
 # Application definition
 
@@ -164,13 +164,13 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+django_heroku.settings(locals())
 STATIC_DIRS = [
     BASE_DIR / "static",
 ]
 
-INTERNAL_IPS = [
-
-    '127.0.0.1',
-
-]
+# INTERNAL_IPS = [
+#
+#     '127.0.0.1',
+#
+# ]
