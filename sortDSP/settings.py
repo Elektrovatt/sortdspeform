@@ -55,7 +55,7 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
 
-    'sortdspeform.herokuapp.com'
+    'sortdspeform',
 
 ]
 
@@ -163,10 +163,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 django_heroku.settings(locals())
 STATIC_DIRS = [
-    BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'static')
 ]
 
 # INTERNAL_IPS = [
