@@ -15,7 +15,7 @@ import os
 import environ
 import django_heroku
 import dj_database_url
-
+BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 # reading .env file
 environ.Env.read_env()
@@ -155,14 +155,14 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 # Extra places for collectstatic to find static files.
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-django_heroku.settings(locals())
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# django_heroku.settings(locals())
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
