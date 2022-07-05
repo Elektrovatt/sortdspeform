@@ -1,0 +1,68 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+{% block content %}
+ <div class="container m-2">
+        <div class="row">
+
+          {% if user.is_authenticated %}
+                {% for p in profile %}
+                    {% for m in menu %}
+                        {% if p.value3 == 'All' and p.user == user %}
+
+                             <div class="card border-primary mb-3 m-1" style="max-width: 180px; max-height: 180px; font-size: 12px; ">
+                                <div class="card-header">ПДСП</div>
+                                <div class="card-body" style="font-size: 10px;">
+                                    <p class="card-text">
+                                        <a class="btn btn-link " href="{% url m.url_name %}" style="font-size: 12px;">{{ m.name_form }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        {% elif m.title_place == p.value3 and p.user == user  %}
+                             <div class="card border-primary mb-3 m-1" style="max-width: 180px; max-height: 180px; font-size: 12px;">
+                                <div class="card-header" >ПДСП</div>
+                                <div class="card-body" style="font-size: 10px;">
+                                    <p class="card-text" >
+                                        <a class="btn btn-link" href="{% url m.url_name %}" style="font-size: 12px;" >{{ m.name_form }}</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                        {% else %}
+
+                        {% endif %}
+
+                    {% endfor %}
+                {% endfor %}
+           {% else %}
+            ---
+           {% endif %}
+
+
+
+<!--        {% if user.is_authenticated %}-->
+<!--&lt;!&ndash;            <h2>{{ user.name }}</h2>&ndash;&gt;-->
+<!--                {% for m in menu %}-->
+<!--                    <div class="card border-primary mb-3 m-1" style="width: 180px; height: 180px">-->
+<!--                        <div class="card-header">ПДСП</div>-->
+
+<!--                        <div class="card-body p-2 align-items-center">-->
+
+<!--                                <p class="card-text">-->
+<!--                                    <a class="btn btn-link p-2" href="{% url m.url_name %}" >{{ m.name_form }}</a>-->
+<!--                                </p>-->
+
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                {% endfor %}-->
+<!--         {% else %}-->
+<!--            -&#45;&#45;-->
+<!--         {% endif %}-->
+
+    </div>
+ </div>
+
+{% endblock %}
+

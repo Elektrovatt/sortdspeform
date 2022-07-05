@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+{% block title %}
+{% endblock %}
+
+<div class="container-fluid">
+    {% block content %}
+         <p><a href="{% url 'list-press-sap' %}">Вернуться назад</a></p>
+                <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <div class="card border-primary mb-3 m-1">
+                                <h5 class="card-title text-center m-3">Состояние форсунок пресса</h5>
+                                <div class="card border-primary mb-3 m-1">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Левая сторона пресса</h5>
+                                        {% for f in form %}
+                                            {% if forloop.counter >= 1 and forloop.counter <= 20 %}
+                                            <div class="row">
+
+                                                <label for="{{ f.id_for_label }}" class="col-sm-6 col-form-label m-2">
+                                                    {{f.label}}:</label>
+                                                <div class="col-sm-3 m-2">
+                                                    {{ f }}
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="card border-primary mb-3 m-1">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Правая сторона пресса</h5>
+                                        {% for f in form %}
+                                            {% if forloop.counter >= 21 and forloop.counter <= 35 %}
+                                                 <div class="row">
+                                                    <label for="{{ f.id_for_label }}" class="col-sm-6 col-form-label m-2">
+                                                    {{f.label}}:</label>
+                                                        <div class="col-sm-3 m-2">
+                                                            {{ f }}
+                                                        </div>
+                                                 </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="form-error"> {{ f.errors }}</div>
+                    <span>{{ error }}</span>
+                    <button class="btn btn-success" type="submit">Сохранить</button>
+                </form>
+    {% endblock %}
+
+</div>

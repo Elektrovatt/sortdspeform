@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Толщина плиты
+{% endblock %}
+<div class="container">
+{% block content %}
+     <p><a href="{% url 'home' %}">Вернуться назад</a></p>
+        <h5>Настройки отображение форм для - {{ user }}</h5>
+        <form method="post">
+            <div class="form-control-test">
+<!--                <p> {% if form.is_customer.value == True %}-->
+<!--                    {% else %}-->
+<!--                               -&#45;&#45;-->
+<!--                    {% endif %}</p>-->
+
+                        {% csrf_token %}<br>
+                         {% for f in form %}
+                            <div class="form-group row">
+                                <label for="{{ f.id_for_label }}" class="col-sm-5 col-form-label">{{f.label}}:</label>
+                                    <div class="col-sm-4">
+                                      {{ f }}
+                                    </div>
+                            </div>
+                            <div class="form-error"> {{ f.errors }}</div>
+                        {% endfor%}
+
+                    <span>{{ error }}</span><br>
+                    <button class="btn btn-success" type="submit">Сохранить</button>
+            </div>
+        </form>
+
+
+
+{% endblock %}
+
+</div>

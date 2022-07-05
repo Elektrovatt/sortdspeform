@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+<div class="container-fluid">
+    {% block content %}
+    {% for m in menu %}
+            {% if url == m.url_name %}
+                <p><a href="{% url m.url_name %}" >Вернуться назад</a></p>
+            {% endif %}
+    {% endfor %}
+    <p>Вы действительно хотите удалить эту запись?</p>
+                <form method="post">
+                        {% csrf_token %}
+                     {{ form.number_shift }}<br>
+
+                    <button class="btn btn-success" type="submit">Да, удалить</button>
+                </form>
+    {% endblock %}
+
+</div>

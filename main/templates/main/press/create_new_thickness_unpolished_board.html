@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% block title %}
+Форма по добавлению толщины плиты
+{% endblock %}
+
+<div class="container-fluid">
+
+
+    {% block content %}
+         <p><a href="{% url 'list-unpolished-board' %}">Вернуться назад</a></p>
+                <form method="post">
+                        {% csrf_token %}
+
+                        {% for f in form %}
+
+                            <div class="form-group row">
+                                <label for="{{ f.id_for_label }}" class="col-sm-4 col-form-label">{{f.label}}:</label>
+                                    <div class="col-sm-3">
+                                      {{ f }}
+                                    </div>
+
+                            </div>
+                            <div class="form-error"> {{ f.errors }}</div>
+
+                        {% endfor%}
+
+                    <span>{{ error }}</span>
+                    <button class="btn btn-success" type="submit">Сохранить</button>
+                </form>
+
+    {% endblock %}
+
+</div>

@@ -1,0 +1,89 @@
+{% extends 'main/base.html' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <a class="p-2  mb-2 text-dark btn btn-outline-primary" href="{% url 'create-pack-board' %}" >Новая запись</a>
+    <a class="p-2 mb-2 text-dark btn btn-outline-primary" href="{% url 'home' %}">Вернуться назад</a>
+    {% if messages %}
+        <div class="p-2 mt-2 alert alert-success text-center">
+            {% for n in messages %}
+            {{n}}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <table class="table table-striped table-hover table-sm w-auto th1">
+      <thead>
+         <tr>
+                <th rowspan="2" class="align-middle pack-width" style="width:105px">№ смены</th>
+                <th rowspan="2" class="align-middle" style="width:220px">Дата</th>
+                <th rowspan="2" class="align-middle" style="width:95px">Толщина  мм</th>
+                <th colspan="24" class="align-middle">Точки замеров</th>
+         </tr>
+         <tr>
+             <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th>
+             <th>12</th><th>13</th><th>14</th><th>15</th><th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th>
+         </tr>
+        </thead>
+      <tbody>
+             <tr>
+                {% for i in list_value %}
+                <tr {% if i.id|slugify == request.GET.id %} class="table-active" {% endif %}>
+                    <td> {{ i.author.last_name }}</td>
+                    <td>{{ i.date_created|date:'d.m.Y H:i' }}</td>
+                    <td>{{ i.value0 }}</td>
+                    <td>{{ i.value1 }}</td>
+                    <td>{{ i.value2 }}</td>
+                    <td>{{ i.value3 }}</td>
+                    <td>{{ i.value4 }}</td>
+                    <td>{{ i.value5 }}</td>
+                    <td>{{ i.value6 }}</td>
+                    <td>{{ i.value7 }}</td>
+                    <td>{{ i.value8 }}</td>
+                     <td>{{ i.value9 }}</td>
+                     <td>{{ i.value10 }}</td>
+                     <td>{{ i.value11 }}</td>
+                     <td>{{ i.value12 }}</td>
+                     <td>{{ i.value13 }}</td>
+                     <td>{{ i.value14 }}</td>
+                     <td>{{ i.value15 }}</td>
+                     <td>{{ i.value16 }}</td>
+                     <td>{{ i.value17 }}</td>
+                     <td>{{ i.value18 }}</td>
+                     <td>{{ i.value19 }}</td>
+                     <td>{{ i.value20 }}</td>
+                     <td>{{ i.value21 }}</td>
+                     <td>{{ i.value22 }}</td>
+                    <td>
+                        {% if request.user == i.author %}
+
+                         <a href="{% url 'update-pack-board' i.id %}">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                     <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                 </svg>
+                         </a></td>
+                        {% else%}
+                        ---
+                        {% endif %}
+                    <td>
+                        {% if request.user == i.author %}
+                         <a href="{% url 'delete-pack-board' i.id %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                        </a>
+                         {% else%}
+                        ---
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
